@@ -229,3 +229,36 @@ Din roll som min strategiska "un-blocker":
 ARBETSLOGG 
 2026-03-16: KubeView installerat och verifierat. Testat skalning av deployment (nginx-army). Noterat att port-forward kan kräva manuell refresh i GUI.
 2026-03-16: Beslut: Vi använder specifika subdomäner (t.ex. kubeview.alptop.net) för tjänster i klustret för att säkerställa tydlighet och undvika kollisioner.
+
+
+📸 PROJEKT "MIGRERING AV DIGITALT LIV" (TILLFÄLLIG MILSTOLPE)
+Mål: Eliminera iCloud och Google Photos. Etablera Immich som "Single Source of Truth" för familjens media. (Fabric-parallell: Bygga vår Ingestion-pipeline från "Raw/Siloed Data" till vårt "Silver Lakehouse").
+
+Nuvarande Scope & Volymer:
+
+Frun: ~300GB i Apple iCloud. Historisk backup (från innan iCloud) är redan inlagd i Immich.
+
+Rasmus: ~450GB i Apple iCloud (primär från 2021 och framåt). Har även Google Photos med originalkvalitet (historik fram till 2021, därefter dubbellagring med Apple).
+
+Aktionsplan (The MVA Path):
+
+Steg 1: WAF & Omedelbar Sync (iCloud). Ladda ner Immich-appen på båda iPhones. Logga in. Slå på "Background Backup". MVA-taktik: För de 300GB + 450GB i iCloud låter vi appen göra tunga lyftet. Låt Immich-appen vara öppen i förgrunden (med skärmlåset inaktiverat i appen) över natten med laddaren i. Appen laddar ner från iCloud -> pushar till MacServern.
+
+Steg 2: Google Takeout (Raw Ingestion). Starta Google Takeout för Rasmus konto (endast Google Photos). Detta tar 24-48 timmar för Google att generera.
+
+Steg 3: Bulk Import via CLI (Immich-Go). När Takeout-zipparna laddats ner till /Volumes/Data_Vault/, använder vi verktyget immich-go i Mac-terminalen. Det suger in filerna direkt i databasen och pusslar ihop Googles trasiga metadata (EXIF/GPS).
+
+Steg 4: Deduplicering (Bronze -> Silver). Eftersom Rasmus dubbellagrat sedan 2021 kommer Immich automatiskt att identifiera hash-kollisioner mellan iCloud-uppladdningen och Google Takeout, och rensa dubbletterna.
+
+Nästa åtgärd vid nystart:
+Om användaren frågar "Var var vi?", kolla om Takeout är beställd. Om nej: Beordra Takeout. Om ja: Gå till Steg 1 (App-sync) eller Steg 3 (immich-go) beroende på vad som är redo.
+
+🛠️ Infrastructure Update (DUMPEN):
+
+Hardware: Seagate 6TB USB-drive.
+
+Role: Temporary Staging Area / Data Dump.
+
+Mount Point: /Volumes/DUMPEN/.
+
+Workflow: All raw data from Google Takeout and iCloud exports are downloaded here first. Immich (running on MacServer) reads from here during the ingestion phase to prevent fragmentation on Data_Vault. Once migration is verified, the disk will be wiped and repurposed as the "Buddy Backup" off-site drive.
