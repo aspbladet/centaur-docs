@@ -222,3 +222,4 @@ Din roll som min strategiska "un-blocker":
 
 ARBETSLOGG 
 2026-03-16: KubeView installerat och verifierat. Testat skalning av deployment (nginx-army). Noterat att port-forward kan kräva manuell refresh i GUI.
+2026-03-16: Beslut: Vi använder specifika subdomäner (t.ex. kubeview.alptop.net) för tjänster i klustret för att säkerställa tydlighet och undvika kollisioner.
