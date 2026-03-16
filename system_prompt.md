@@ -92,7 +92,9 @@ Mappstruktur (Best Practice): Konfiguration på intern SSD (~/docker/), Data på
 
 
 
-80 / 443 / 81: Nginx Proxy Manager
+80 / 443: Nginx Proxy Manager (Huvudportar för all trafik, inkl. *.alptop.net)
+
+81: Nginx Proxy Manager Admin GUI
 
 53: Pi-hole/DNS
 
@@ -107,6 +109,8 @@ Mappstruktur (Best Practice): Konfiguration på intern SSD (~/docker/), Data på
 9980: Collabora CODE Server
 
 6443: K3s API Server (Pico-node-01)
+
+32000: KubeView (NodePort på Pico-nodes, mappad via NPM)
 
 🛠️ ADMINISTRATION, ÅTKOMST & ARBETSFLÖDE (BASTION HOST & ZERO TRUST)
 
