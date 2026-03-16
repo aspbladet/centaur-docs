@@ -76,6 +76,8 @@ Nginx Proxy Manager (NPM): Tar emot trafiken och dirigerar internt via SSL (Let'
 
 -> 192.168.50.101:80 (Pico-klustret / Ingress)
 
+-> 192.168.50.102:32000 (KubeView via NodePort. OBS: Kräver 'proxy_buffering off' och Websocket-headers i Advanced/Custom Nginx för live-uppdateringar.)
+
 📝 STATUS & ARKITEKTURPRINCIPER
 
 
