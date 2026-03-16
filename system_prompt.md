@@ -262,3 +262,19 @@ Role: Temporary Staging Area / Data Dump.
 Mount Point: /Volumes/DUMPEN/.
 
 Workflow: All raw data from Google Takeout and iCloud exports are downloaded here first. Immich (running on MacServer) reads from here during the ingestion phase to prevent fragmentation on Data_Vault. Once migration is verified, the disk will be wiped and repurposed as the "Buddy Backup" off-site drive.
+
+
+### 🛠️ STORAGE & DOCKER GOVERNANCE (GHOST DATA PROTECTION)
+- **Primary Storage:** Data_Vault (UUID: 0D05C228-7BCD-4D3A-9194-D39114F6FF83) forced mount via `/etc/fstab`.
+- **Ghost Data Policy:** Docker Desktop "Start at Login" = DISABLED. 
+- **The Gatekeeper:** Startup handled by `~/centaur-docs/start-lab.sh`. It validates physical presence of `.mounted_sentinel` before executing `open -a "Docker"`.
+- **Visual Feedback:** `START_SERVER.command` added to macOS Login Items to pop a terminal window on boot for manual verification.
+
+### 📸 PROJEKT "MIGRERING AV DIGITALT LIV" (AKTIV FAS)
+- **Staging Area:** Seagate 6TB (DUMPEN) formaterad som APFS. Innehåller mappar för Google Takeout och iCloud exports.
+- **Future State:** Efter migration flyttas disken till **Buddy-pi** för off-site backup.
+- **Migration Logic:** 1. iCloud-sync via App (iPhone) -> 2. Google Takeout -> 3. Immich-go bulk import från DUMPEN -> 4. Deduplicering.
+
+### 🧠 LESSONS LEARNED & GOTCHAS
+- **KubeView Live:** Kräver `proxy_buffering off` i NPM och `API_POLL_MS=500` i K8s för att undvika "frysta" nätverkshändelser.
+- **Mac Server Mode:** Messages/FaceTime/iCloud Photos Sync inaktiverat för att bevara resurser och intern SSD-hälsa.

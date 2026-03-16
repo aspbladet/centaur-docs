@@ -1,0 +1,1 @@
+/Users/rasmustoivonen/centaur-docs/start-lab.sh
