@@ -150,6 +150,13 @@ H. Projekt "PromptOps" (Prio 10/10): MIGRERING PÅGÅR. Versionshantera denna SY
 
 I. Projekt "Pico-Cloud / Multi-tenancy" (Prio 8/10): PLANERINGSFAS. Mål: Agera Cloud Provider åt 1-3 vänner i klustret för att träna Governance och Resource Management (Speglar Microsoft Fabric Capacities / Azure Subscriptions).
 
+### 🤖 PROJEKT: AI VAULT PIPELINE (STATUS: v1.0 LIVE)
+- **Syfte:** Automatiserad ETL-pipeline för att transformera GitHub-repon till AI-kontext.
+- **Stack:** Apple Shortcuts (Trigger) -> SSH -> Bash (`process_repo.sh`) -> Repomix.
+- **Lagring:** `~/ai-vault/repos/` (Kontextfiler) och `~/ai-vault/index.md` (Katalog).
+- **Loggning:** `~/ai-vault/vault.log` för teknisk audit.
+- **Mål:** Bygga en synergi-scanner som föreslår kombinationer av olika teknologier i vaulten.
+
 * Arkitektur & Isolering: K8s Namespaces (sandlådor), strikt K8s RBAC via RoleBindings (Principle of Least Privilege).
 
 * Hotmodellering & Zero Trust (Kravlista INNAN onboarding - CKS/SC-900 fokus):
@@ -295,3 +302,56 @@ Workflow: All raw data from Google Takeout and iCloud exports are downloaded her
 
 ### 🔌 PORT-REGISTER (UPPDATERAT)
 - 8082: Pi-hole Admin GUI (Planerat/Reserverat för att undvika krock med NPM)
+
+
+Server hemma
+Custom Gem
+Server hemma said
+Vilka fantastiska fynd! De här två projekten passar ju helt perfekt in i din nya "Allabolag-klon"-vision.
+
+Med "The Agency" får du ett helt team av AI-specialister som kan hjälpa dig bygga eller skrapa data, och med "Impeccable" ser du till att webbtjänsten du bygger inte ser ut som en tråkig "standard-AI-sida", utan får en proffsig och modern frontend-design. Riktigt vassa verktyg att mata din Vault med!
+
+Här är din uppdaterade (och ännu mer kraftfulla) statusuppdatering för system_prompt.md:
+
+📝 STATUSUPPDATERING: PROJEKTTET: AI VAULT 
+Genomfört (v1.0 LIVE):
+
+AI Vault Pipeline: Bash-scriptet process_repo.sh är operativt på MacMinin. Det klonar, transformerar (via Repomix) och indexerar GitHub-repos till textformat.
+
+iOS Automation: En Apple Shortcut är skapad ("Lägg i AI Vault") som triggar scriptet över SSH via Tailscale. Testat med framgång på stora repon (n8n, 25M tokens).
+
+Miljöfix: Scriptet är "skottsäkert" med korrekt PATH och source av profiler för att hitta Node/npx även via icke-interaktiva SSH-sessioner.
+
+Logging: vault.log är implementerad för teknisk audit och felsökning.
+
+Nya insikter & Projektfokus:
+
+Webbtjänst-initiativ (Allabolag-klon): Två nya strategiska projekt har lagts till i vaulten för att utforska byggandet av datadrivna webbtjänster:
+
+Dataextrahering: Användning av verktyg för att skrapa och strukturera företagsinformation.
+
+Frontend/Backend-ramverk: Implementering av moderna webbgränssnitt för att presentera storskalig data på ett användarvänligt sätt.
+
+Börja med (Första projekten att indexera i Vaulten när vi är igång):
+
+The Agency: Ett massivt bibliotek med 147 specialiserade AI-agenter/personligheter för att bygga dynamiska arbetsflöden. (Perfekt för att bygga agenter som sköter dataextraktionen till din webbtjänst).
+
+Impeccable: Ett avancerat frontend-design-ramverk (20 styrkommandon och "anti-patterns") som tvingar AI:n att bygga snygga, skräddarsydda UI:n istället för tråkiga standardmallar.
+
+Närmaste fokus (Roadmap):
+
+AI Synergy Scanner: Integrera ett API-anrop (OpenAI/Anthropic) i bash-scriptet.
+
+Mål: Att scriptet vid varje nytt repo analyserar index.md och föreslår kopplingar till befintliga projekt (som hur "The Agency" kan samspela med "Impeccable").
+
+Katalogisering: Snygga till index.md så att AI:n lättare kan läsa av "hisspitchar" för varje lagrat projekt.
+
+Shortcut-polering: Säkerställa att delningsmenyn på iPhone endast skickar rena URL:er för att minimera fel.
+
+Network Governance: Fortsätta med Pi-hole/Unbound-setupen för att säkra nätverket (efter Change Freeze).
+
+Att göra under resan (Rasmus):
+
+Samla spännande repon i en "Wishlist"-anteckning.
+
+Fundera på specifika frågor för "Synergy Scannern", särskilt kring hur de nya webbprojekten (allabolag-klonen) bäst kan integreras med din befintliga arkitektur och de nya AI-agenterna.
