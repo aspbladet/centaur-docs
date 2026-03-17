@@ -278,3 +278,20 @@ Workflow: All raw data from Google Takeout and iCloud exports are downloaded her
 ### 🧠 LESSONS LEARNED & GOTCHAS
 - **KubeView Live:** Kräver `proxy_buffering off` i NPM och `API_POLL_MS=500` i K8s för att undvika "frysta" nätverkshändelser.
 - **Mac Server Mode:** Messages/FaceTime/iCloud Photos Sync inaktiverat för att bevara resurser och intern SSD-hälsa.
+
+
+### 📸 PROJEKT "MIGRERING AV DIGITALT LIV" (STATUS: MILESTONE REACHED)
+- **Status:** Google Takeout Migration genomförd för Rasmus bilder (2026-03-17).
+- **Volym:** ~578GB (121 402 assets) framgångsrikt migrerade från DUMPEN till Data_Vault via immich-go.
+- **Success Rate:** 99.99% (Endast 1 fil med error av 121k+).
+- **Next Step:** Aktivera Live-sync på iPhone (Rasmus: Pågående, Frun: Nästa).
+- **Cleanup:** Behåll rådata på DUMPEN i 48h för validering, därefter wipe för Buddy Backup.
+
+### 🧠 LESSONS LEARNED & GOTCHAS (FELSÖKNINGSLOGG)
+- **Terminal UI & Resizing:** Resizing av terminalfönster (Cursor/SSH) kan krascha TUI-gränssnitt i Go-binärer. 
+- **Tmux Recovery:** Vid krasch/resize-hängning, använd `tmux attach -t <namn>`. Om sessionen dör, är Immich-go idempotent och kan startas om på samma fil/mapp utan dubbletter.
+- **Svensk Layout i Tmux:** Scroll-mode (Copy Mode) i tmux på svenskt tangentbord triggas med `Ctrl + B` följt av `Å` (motsvarar US `[`).
+- **Immich Post-Processing:** Efter mass-import krävs betydande "Compute"-tid för Thumbnail generation och Microservices (Machine Learning). Is i magen krävs medan tidslinjen indexeras.
+
+### 🔌 PORT-REGISTER (UPPDATERAT)
+- 8082: Pi-hole Admin GUI (Planerat/Reserverat för att undvika krock med NPM)
